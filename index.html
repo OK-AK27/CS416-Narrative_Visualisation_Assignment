@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economic Development Through Time: A Global Perspective</title>
+    <link href="index.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="index.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Economic Development Through Time</h1>
+            <p>A Global Perspective on Population, Wealth, and Well-being</p>
+        </div>
+
+        <div class="navigation">
+            <button id="0" class="nav-button active">The Big Picture</button>
+            <button id="1" class="nav-button">Regional Dynamics</button>
+            <button id="2" class="nav-button">Interactive Explorer</button>
+        </div>
+
+        <!-- Scene 1: The Big Picture -->
+        <div class="scene active" id="scene-0">
+            <h2 class="scene-title">The Big Picture</h2>
+            <p class="scene-description">
+                Explore the relationship between economic prosperity and quality of life across the globe.
+                Watch as countries develop over time, revealing patterns of growth and convergence.
+            </p>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label>Year</label>
+                    <input type="range" id="year-slider" min="1960" max="2020" value="2000" step="5">
+                    <span id="year-display">2000</span>
+                </div>
+                <div class="control-group">
+                    <label>Y-Axis Indicator</label>
+                    <select id="y-indicator">
+                        <option value="lifeExpectancy">Life Expectancy</option>
+                        <option value="literacyRate">Literacy Rate</option>
+                        <option value="infantMortality">Infant Mortality</option>
+                    </select>
+                </div>
+                <button class="play-button" id="play-animation">Play Animation</button>
+            </div>
+
+            <div class="chart-container" id="bubble-chart"></div>
+
+            <div class="legend" id="bubble-legend"></div>
+
+            <div class="interactive-hint">
+                Hover over bubbles to see detailed country information. Use the controls to explore different years and indicators.
+            </div>
+        </div>
+
+        <!-- Scene 2: Regional Dynamics -->
+        <div class="scene" id="scene-1">
+            <h2 class="scene-title">Regional Dynamics</h2>
+            <p class="scene-description">
+                Discover how different regions of the world have evolved economically.
+                See patterns of regional clustering and understand the geographic dimensions of development.
+            </p>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label>Map Indicator</label>
+                    <select id="map-indicator">
+                        <option value="gdpPerCapita">GDP per Capita</option>
+                        <option value="lifeExpectancy">Life Expectancy</option>
+                        <option value="literacyRate">Literacy Rate</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>Map Year</label>
+                    <input type="range" id="map-year" min="1960" max="2020" value="2020" step="10">
+                    <span id="map-year-display">2020</span>
+                </div>
+            </div>
+
+            <div class="chart-container" id="world-map"></div>
+
+            <div class="metrics-panel">
+                <div class="metric-card">
+                    <div class="metric-value" id="total-countries">195</div>
+                    <div class="metric-label">Countries</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="avg-gdp">$12,400</div>
+                    <div class="metric-label">Avg GDP per Capita</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="highest-country">Norway</div>
+                    <div class="metric-label">Highest Indicator</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" id="regional-clusters">6</div>
+                    <div class="metric-label">Regional Clusters</div>
+                </div>
+            </div>
+
+            <div class="interactive-hint">
+                Click on countries to see detailed information. The color intensity represents the indicator value.
+            </div>
+        </div>
+
+        <!-- Scene 3: Interactive Explorer -->
+        <div class="scene" id="scene-2">
+            <h2 class="scene-title">Interactive Explorer</h2>
+            <p class="scene-description">
+                Take control and explore the data your way. Compare any indicators, filter by regions,
+                and discover your own insights in the data.
+            </p>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label>X-Axis</label>
+                    <select id="x-axis-select">
+                        <option value="gdpPerCapita">GDP per Capita</option>
+                        <option value="population">Population</option>
+                        <option value="lifeExpectancy">Life Expectancy</option>
+                        <option value="literacyRate">Literacy Rate</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>Y-Axis</label>
+                    <select id="y-axis-select">
+                        <option value="lifeExpectancy">Life Expectancy</option>
+                        <option value="gdpPerCapita">GDP per Capita</option>
+                        <option value="literacyRate">Literacy Rate</option>
+                        <option value="infantMortality">Infant Mortality</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>Region Filter</label>
+                    <select id="region-filter">
+                        <option value="all">All Regions</option>
+                        <option value="Africa">Africa</option>
+                        <option value="Asia">Asia</option>
+                        <option value="Europe">Europe</option>
+                        <option value="North America">North America</option>
+                        <option value="South America">South America</option>
+                        <option value="Oceania">Oceania</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>Explorer Year</label>
+                    <input type="range" id="explorer-year" min="1960" max="2020" value="2020" step="5">
+                    <span id="explorer-year-display">2020</span>
+                </div>
+            </div>
+
+            <div class="chart-container" id="explorer-chart"></div>
+
+            <div class="interactive-hint">
+                Change any parameter to see how countries compare across different dimensions.
+            </div>
+        </div>
+    </div>
+    <div class="tooltip" id="tooltip"></div>
+</body>
+</html>
